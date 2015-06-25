@@ -1,0 +1,4 @@
+
+class BootswatchSkin : BootstrapSkin {
+	
+}
