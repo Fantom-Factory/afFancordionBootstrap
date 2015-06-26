@@ -1,4 +1,8 @@
 
+.breadcrumb {
+	margin-top:		1em;	
+}
+
 table.table {
 	margin-top:		2em;
 	width:			auto;
@@ -17,4 +21,8 @@ span.cmd {
 
 .panel {
 	margin-top:		2em;
+}
+
+footer {
+	margin-bottom:	1em;	
 }
