@@ -16,11 +16,12 @@ class Build : BuildPod {
 
 		depends = [
 			"sys          1.0",
-			"afFancordion 1.0.3 - 1.1"
+			"afFancordion 1.0.3 - 1.1",
+			"afBeanUtils  1.0.4 - 1.0"
 		]
 
 		srcDirs = [`test/`, `fan/`]
-		resDirs = [`doc/`, `test/`, `res/`, `res/bootstrap/css/`, `res/bootstrap/fonts/`, `res/bootstrap/js/`, `res/jquery/`, `res/bootswatch/`]
+		resDirs = [`doc/`, `test/`, `res/bootstrap/css/`, `res/bootstrap/fonts/`, `res/bootstrap/js/`, `res/jquery/`, `res/bootswatch/`]
 	}
 	
 	//** see http://fantom.org/forum/topic/2283
