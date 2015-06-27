@@ -14,6 +14,24 @@ Sometimes the unexpected happens and a command throws an [Exception]`exe:throw E
 
 
 
+Example: Tables
+---------------
+Fancordion allows a simple table markup to be used in the specifications. 
+Tables may be used to run the same command over multiple rows of data: 
+
+  table:
+  col[2]+eq:((#COL[0] == "Britt") ? "Nina Hartley" : #COL[0] + " " + #COL[1])
+
+  First Name   Last Name   Full Name
+  ----------   ---------   --------------
+  Joanna       Storm       Joanna Storm
+  Rachel       Ashley      Rachel Ashley
+  Amber        Lynn        Amber Lynn
+  Barbara      Dare        Barbara Dare
+  Britt        Morgan      Britt Morgan
+
+
+
 Example: Pre Text
 ----------------
 Pre-formatted text is useful for showing:
@@ -24,21 +42,3 @@ It may also be used for verifications:
 
   eq:"Green for success!"
   Green for success!
-
-
-
-Example: Tables
----------------
-Fancordion allows a simple table markup to be used in the specifications. 
-Tables may be used to run the same command over multiple rows of data: 
-
-  table:
-  col[2]+eq:(#COL[0] + " " + #COL[1])
-
-  First Name   Last Name   Full Name
-  ----------   ---------   --------------
-  Joanna       Storm       Joanna Storm
-  Rachel       Ashley      Rachel Ashley
-  Amber        Lynn        Amber Lynn
-  Barbara      Dare        Barbara Dare
-  Britt        Morgan      Nina Hartley
