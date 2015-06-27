@@ -6,7 +6,9 @@ class SkinTest : Test {
 	** Runs this Test class as a Fancordion fixture. 
 	** This method name is prefixed with 'test' so it is picked up by 'fant' and other test runners.
 	virtual Void testFixture() {
-		runner := FancordionRunner.current ?: FancordionRunner()
+		runner := FancordionRunner.current ?: MyFancordionRunner() {
+			it.outputDir = `doc/skins/`.toFile
+		}
 
 		setupRunner(runner)
 		
@@ -14,4 +16,9 @@ class SkinTest : Test {
 	}
 	
 	virtual Void setupRunner(FancordionRunner runner) { }
+}
+
+class MyFancordionRunner : FancordionRunner {
+	// please don't delete my resource files! 
+	override Void suiteSetup() { }
 }
