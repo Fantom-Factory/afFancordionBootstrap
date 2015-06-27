@@ -1,0 +1,5 @@
+[sys::Uri:sys::Str][
+	`/doc/pod.fandoc`			: "User Guide",
+	`/doc/skins/index.html`		: "Skin Samples",
+	`/doc/releaseNotes.fandoc`	: "Release Notes"
+]
