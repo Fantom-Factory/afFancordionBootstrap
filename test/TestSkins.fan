@@ -7,12 +7,12 @@ using afFancordion
 ** Classic Skin
 ** ************
 ** For comparison reasons, this is a rendering of the Concordion *Classic* skin as bundled with Fancordion: 
-**  - [Classic Skin]`run:TestSkinClassic#`
+**  - [Classic Skin]`run:TestClassicSkin#`
 ** 
 ** Bootstrap Skin
 ** **************
 ** Fancordion in the vanilla *Bootstrap* skin: 
-**  - [Bootstrap Skin]`run:TestSkinBootstrap#`
+**  - [Bootstrap Skin]`run:TestBootstrapSkin#`
 ** 
 ** Bootswatch Skins
 ** ****************
