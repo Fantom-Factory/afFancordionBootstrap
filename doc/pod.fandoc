@@ -1,4 +1,144 @@
 Overview
 ********
-Bootstrap and Bootswatch skins for Fancordion test results.
+Fancordion is a highly skinnable *Test by Example* testing framework.
 
+Fancordion Bootstrap provides [Bootstrap]`http://getbootstrap.com/` and [Bootswatch]`https://bootswatch.com/` skins for Fancordion test results.
+
+Fancordion Bootstrap is bundled with skins for Bootstrap v3.3.5.
+
+![Bootstrap rendering example]`bootstrapRenderingExample.png`
+
+
+
+Quick Start
+***********
+1. Create a text file called 'BootstrapFixture.fan'
+
+    syntax: fantom
+
+    using afFancordion
+    using afFancordionBootstrap
+
+    ** Bootstrap Fixture
+    ** #################
+    **
+    ** This simple fixture is rendered with the Bootstrap skin.
+    **
+    ** Example
+    ** -------
+    ** Fancordion says, [Hello World!]`verifyEq:greeting()`
+    **
+    class BootstrapFixture : FixtureTest {
+        override FancordionRunner fancordionRunner() {
+            FancordionRunner() {
+                it.skinType = BootstrapSkin#
+            }
+        }
+
+        Str greeting() {
+            "Hello World!"
+        }
+    }
+
+2. Run 'BootstrapFixture.fan' as a Fantom test script ( [fant]`docTools::Fant` ) from the command prompt:
+
+    C:\> fant BootstrapFixture.fan
+
+    -- Run:  BootstrapFixture_0::BootstrapFixture.testFancordionFixture...
+       Pass: BootstrapFixture_0::BootstrapFixture.testFancordionFixture [0]
+
+    [info] [afFancordion] C:\temp\fancordion\from-script\BootstrapFixture.html ... Ok
+
+    Time: 691ms
+
+    ***
+    *** All Fixtures Passed! [1 Fixtures]
+    ***
+
+3. View the generated fixture result file:
+
+  ![Fancordion Fixture Result]`bootstrapFixture.png`
+
+
+
+Usage
+*****
+Bootstrap Skins
+===============
+To use the vanilla 'Bootstrap' skin, set the 'skinType' field on [FancordionRunner]`afFancordion::FancordionRunner`:
+
+  syntax: fantom
+
+  using afFancordion
+  using afFancordionBootstrap
+
+  ** My Fixture
+  class BootstrapFixture : FixtureTest {
+      override FancordionRunner fancordionRunner() {
+          FancordionRunner() {
+              it.skinType = BootstrapSkin#
+          }
+      }
+
+      ...
+  }
+
+To use the themed version of Bootstrap, set the 'gimmeSomeSkin' field instead:
+
+  syntax: fantom
+  it.gimmeSomeSkin = |->FancordionSkin| { BootstrapSkin(true) }
+
+
+
+Bootswatch Skins
+================
+Fancordion Bootstrap is also bundled with Bootswatch skins. To use, set the 'gimmeSomeSkin' function on [FancordionRunner]`afFancordion::FancordionRunner`:
+
+  syntax: fantom
+
+  using afFancordion
+  using afFancordionBootstrap
+
+  ** My Bootswatch Fixture
+  class BootswatchFixture : FixtureTest {
+      override FancordionRunner fancordionRunner() {
+          FancordionRunner() {
+              it.gimmeSomeSkin = |->FancordionSkin| {
+                  BootswatchSkin("Cyborg")
+              }
+          }
+      }
+
+      ...
+  }
+
+
+
+The Bootswatch 'skinName' may be one of:
+
+ - 'Cerulean'
+ - 'Cosmo'
+ - 'Cyborg'
+ - 'Darkly'
+ - 'Flatly'
+ - 'Journal'
+ - 'Lumen'
+ - 'Paper'
+ - 'Readable'
+ - 'Sandstone'
+ - 'Simplex'
+ - 'Slate'
+ - 'Spacelab'
+ - 'Superhero'
+ - 'United'
+ - 'Yeti'
+
+![Fancordion Cyborg Fixture Result]`cyborgFixture.png`
+
+
+
+Error Modals
+============
+Should an error be thrown in your Fancordion fixture, a 'Show Stack Trace' button is shown next to the command in error which, when pressed, displays a modal dialogue with the stack trace.
+
+ ![Stack Trace in Err Modal]`errModal.png`

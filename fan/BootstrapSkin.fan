@@ -1,10 +1,35 @@
 using afFancordion
 
-** A Fancordion Skin for Twitter [Bootstrap]`http://getbootstrap.com/` v3.3.5.
+** A Fancordion Skin for Twitter [Bootstrap]`http://getbootstrap.com/`.
+** 
+** To use the vanilla 'Bootstrap' skin, set the 'skinType' field on [FancordionRunner]`afFancordion::FancordionRunner`:
+** 
+**   syntax: fantom
+** 
+**   using afFancordion
+**   using afFancordionBootstrap
+** 
+**   ** My Bootstrap Fixture
+**   class BootstrapFixture : FixtureTest {
+**       override FancordionRunner fancordionRunner() {
+**           FancordionRunner() {
+**               it.skinType = BootstrapSkin#
+**           }
+**       }
+** 
+**       ...
+**   }
+** 
+** To use the themed version of Bootstrap, set the 'gimmeSomeSkin' field instead:
+** 
+**   syntax: fantom
+**   it.gimmeSomeSkin = |->FancordionSkin| { BootstrapSkin(true) }
+** 
 class BootstrapSkin : FancordionSkin {
 	private	Bool	inPanelHeading
 	private	Int		nextErrId	:= 1
 	private Str[]	modals		:= Str[,]
+	private Bool	useTheme
 	
 	** The CSS classes used for tables. Set to enhance your tables:
 	** 
@@ -14,6 +39,13 @@ class BootstrapSkin : FancordionSkin {
 	** Defaults to just 'table'.
 	** See [Bootstrap Tables]`http://getbootstrap.com/css/#tables` for details.
 			Str 	tableCss	:= "table" 
+	
+	** Creates a Bootstrap skin. 
+	** Set 'useTheme' to 'true' to use the *themed* version of Bootstrap. 
+	** The *themed* version uses colour gradients on buttons and other components.  
+	new make(Bool useTheme := false) {
+		this.useTheme = useTheme
+	}
 	
 	// ---- Setup / Tear Down -------------------
 
@@ -31,15 +63,17 @@ class BootstrapSkin : FancordionSkin {
 
 		// copy the bootstrap files over
 		addCss		(bootstrapCssUri.get)
-		addCss		(`fan://afFancordionBootstrap/res/bootstrap/css/fancordion-bs.css`.get)
+		if (useTheme)
+			addCss	(`fan://afFancordionBootstrap/doc/skins/bootstrap/css/bootstrap-theme.min.css`.get)
+		addCss		(`fan://afFancordionBootstrap/doc/skins/bootstrap/css/fancordion-bs.css`.get)
 
-		addScript	(`fan://afFancordionBootstrap/res/jquery/jquery-1.11.3.min.js`.get)
-		addScript	(`fan://afFancordionBootstrap/res/bootstrap/js/bootstrap.min.js`.get)
+		addScript	(`fan://afFancordionBootstrap/doc/skins/bootstrap/js/jquery-1.11.3.min.js`.get)
+		addScript	(`fan://afFancordionBootstrap/doc/skins/bootstrap/js/bootstrap.min.js`.get)
 
-		copyFile	(`fan://afFancordionBootstrap/res/bootstrap/fonts/glyphicons-halflings-regular.eot`.get,	`fonts/`)
-		copyFile	(`fan://afFancordionBootstrap/res/bootstrap/fonts/glyphicons-halflings-regular.ttf`.get,	`fonts/`)
-		copyFile	(`fan://afFancordionBootstrap/res/bootstrap/fonts/glyphicons-halflings-regular.woff`.get,	`fonts/`)
-		copyFile	(`fan://afFancordionBootstrap/res/bootstrap/fonts/glyphicons-halflings-regular.woff2`.get,	`fonts/`)
+		copyFile	(`fan://afFancordionBootstrap/doc/skins/bootstrap/fonts/glyphicons-halflings-regular.eot`.get,	`fonts/`)
+		copyFile	(`fan://afFancordionBootstrap/doc/skins/bootstrap/fonts/glyphicons-halflings-regular.ttf`.get,	`fonts/`)
+		copyFile	(`fan://afFancordionBootstrap/doc/skins/bootstrap/fonts/glyphicons-halflings-regular.woff`.get,	`fonts/`)
+		copyFile	(`fan://afFancordionBootstrap/doc/skins/bootstrap/fonts/glyphicons-halflings-regular.woff2`.get,`fonts/`)
 		return this
 	}
 
@@ -47,7 +81,7 @@ class BootstrapSkin : FancordionSkin {
 	** 
 	** Defaults to '`fan://afFancordionBootstrap/res/bootstrap/css/bootstrap.min.css`' but is overridden by Bootswatch skins.
 	virtual Uri bootstrapCssUri() {
-		`fan://afFancordionBootstrap/res/bootstrap/css/bootstrap.min.css`
+		`fan://afFancordionBootstrap/doc/skins/bootstrap/css/bootstrap.min.css`
 	}
 	
 	@NoDoc
@@ -150,28 +184,42 @@ class BootstrapSkin : FancordionSkin {
 	** Called to render an ignored command.
 	@NoDoc
 	override This cmdIgnored(Str text) {
-		write("""<${cmdElem} class="cmd active bg-active">${text.toXml}</${cmdElem}>""")
+		write(inTable 
+			? """<td   class="cmd active">${text.toXml}</td>"""
+			: """<span class="cmd alert alert-active">${text.toXml}</span>"""
+		)
 	}
 
 	** Called to render a command success.
 	@NoDoc
 	override This cmdSuccess(Str text, Bool escape := true) {
-		html := escape ? text.toXml : text
-		return write("""<${cmdElem} class="cmd success bg-success">${html}</${cmdElem}>""")
+		body := escape ? text.toXml : text
+		return write(inTable 
+			? """<td   class="cmd success">${body}</td>"""
+			: """<span class="cmd alert alert-success">${body}</span>"""
+		)
 	}
 
 	** Called to render a command failure.
 	@NoDoc
 	override This cmdFailure(Str expected, Obj? actual, Bool escape := true) {
-		html := escape ? expected.toXml : expected
-		return write("""<${cmdElem} class="cmd danger bg-danger"><del class="expected">${html}</del> <span class="actual">${firstLine(actual?.toStr).toXml}</span></${cmdElem}>""")
+		text := escape ? expected.toXml : expected
+		body := """<del class="expected">${text}</del> <span class="actual">${firstLine(actual?.toStr).toXml}</span>"""
+		return write(inTable 
+			? """<td   class="cmd danger">${body}</td>"""
+			: """<span class="cmd alert alert-danger">${body}</span>"""
+		)
 	}
 
 	** Called to render a command error.
 	@NoDoc
 	override This cmdErr(Str cmdUrl, Str cmdText, Err err) {
 		modalId := "modal-${nextErrId++}"
-		write("""<${cmdElem} class="cmd danger bg-danger"><del class="expected">${cmdText.toXml}</del> <samp class="actual">${err.typeof.name.toXml}: ${firstLine(err.msg).toXml}</samp></${cmdElem}>""")
+		body := """<del class="expected">${cmdText.toXml}</del> <samp class="actual">${err.typeof.name.toXml}: ${firstLine(err.msg).toXml}</samp>"""
+		write(inTable 
+			? """<td   class="cmd danger">${body}</td>"""
+			: """<span class="cmd alert alert-danger">${body}</span>"""
+		)
 		write(""" <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#${modalId}">Show Stack Trace</button>""")
 
 		modal := 

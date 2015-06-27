@@ -2,10 +2,20 @@ using afFancordion
 
 ** Fancordion Skins
 ** ################
+** 
+** Classic Skin
+** ************
+** For comparison reasons, this is a rendering of the Concordion *Classic* skin as bundled with Fancordion: 
 **  - [Classic Skin]`run:TestSkinClassic#`
+** 
+** Bootstrap Skin
+** **************
+** The vanilla *Bootstrap* skin: 
 **  - [Bootstrap Skin]`run:TestSkinBootstrap#`
 ** 
-** Bootswatch Skins:
+** Bootswatch Skins
+** ****************
+** These are the bundled *Bootswatch* skins:
 **  - [Cerulean Skin]`run:TestCeruleanSkin#` 	- A calm blue sky
 **  - [Cosmo Skin]`run:TestCosmoSkin#` 			- An ode to Metro
 **  - [Cyborg Skin]`run:TestCyborgSkin#`		- Jet black and electric blue
@@ -25,6 +35,6 @@ using afFancordion
 ** 
 class TestSkins : SkinTest {
 	override Void setupRunner(FancordionRunner runner) {
-		runner.skinType = BootstrapSkin#
+		runner.skinType = BootstrapSkin2#
 	}
 }
