@@ -55,7 +55,7 @@ class BootstrapSkin2	: BootstrapSkin {
 	new make(Bool useTheme := false) : super(useTheme) { }
 	override Uri copyFile(File srcFile, Uri destUrl, Bool overwrite := false) {
 		if (srcFile.normalize.uri.host == "afFancordionBootstrap")
-			destUrl = srcFile.normalize.uri.relTo(`fan://afFancordionBootstrap/doc/skins/`)
+			destUrl = srcFile.normalize.uri.relTo(`fan://afFancordionBootstrap/doc/skins/afFancordionBootstrap/`)
 		return destUrl	// don't copy the file - we'd just be overwriting the src!
 	}
 }
@@ -64,7 +64,7 @@ class BootswatchSkin2	: BootswatchSkin {
 	new make(Str skinName) : super(skinName) { }
 	override Uri copyFile(File srcFile, Uri destUrl, Bool overwrite := false) {
 		if (srcFile.normalize.uri.host == "afFancordionBootstrap")
-			destUrl = srcFile.normalize.uri.relTo(`fan://afFancordionBootstrap/doc/skins/`)
+			destUrl = srcFile.normalize.uri.relTo(`fan://afFancordionBootstrap/doc/skins/afFancordionBootstrap/`)
 		return destUrl	// don't copy the file - we'd just be overwriting the src!
 	}
 }

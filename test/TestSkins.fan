@@ -2,6 +2,7 @@ using afFancordion
 
 ** Fancordion Skins
 ** ################
+** This page lets you preview the bundled skins in a generic Fancordion test.
 ** 
 ** Classic Skin
 ** ************
@@ -10,7 +11,7 @@ using afFancordion
 ** 
 ** Bootstrap Skin
 ** **************
-** The vanilla *Bootstrap* skin: 
+** Fancordion in the vanilla *Bootstrap* skin: 
 **  - [Bootstrap Skin]`run:TestSkinBootstrap#`
 ** 
 ** Bootswatch Skins
