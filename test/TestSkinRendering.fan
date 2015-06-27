@@ -5,14 +5,14 @@ abstract class TestSkinRendering : SkinTest {
 	abstract Str skinName()
 }
 
-class TestSkinClassic : TestSkinRendering {
+class TestClassicSkin : TestSkinRendering {
 	override Str skinName	:= "Classic"
 	override Void setupRunner(FancordionRunner runner) {
 		runner.skinType = ClassicSkin2#
 	}
 }
 
-class TestSkinBootstrap : TestSkinRendering {
+class TestBootstrapSkin : TestSkinRendering {
 	override Str skinName	:= "Bootstrap"
 	override Void setupRunner(FancordionRunner runner) {
 		runner.skinType = BootstrapSkin2#
