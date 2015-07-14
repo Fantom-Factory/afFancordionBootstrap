@@ -233,8 +233,8 @@ class BootstrapSkin : FancordionSkin {
            <h4 class="modal-title">${err.typeof.name.toXml}: ${firstLine(err.msg).toXml}</h4>
          </div>
          <div class="modal-body">
-           <p>Err thrown while evaluating command: <code>${cmdUrl}</code></p>
-           <pre>${err.traceToStr}</pre>
+           <p>Err thrown while evaluating command: <code>${cmdUrl.toXml}</code></p>
+           <pre>${err.traceToStr.toXml}</pre>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
