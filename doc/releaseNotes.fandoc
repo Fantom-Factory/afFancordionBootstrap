@@ -1,7 +1,11 @@
 Versions
 ********
 
-v0.0.2
+v1.0.1
 ======
- - New: Preview release.
+ - Bug: Stacktraces weren't XML escaped.
+
+v1.0.0
+======
+ - New: Initial release.
 
