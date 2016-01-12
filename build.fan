@@ -16,11 +16,11 @@ class Build : BuildPod {
 
 		depends = [
 			"sys          1.0",
-			"afFancordion 1.0.4 - 1.0",
+			"afFancordion 1.1.0 - 1.1",
 			"afBeanUtils  1.0.4 - 1.0"
 		]
 
-		srcDirs = [`test/`, `fan/`]
+		srcDirs = [`fan/`, `test/`]
 		resDirs = [`doc/`, `test/`, `doc/skins/bootstrap/css/`, `doc/skins/bootstrap/fonts/`, `doc/skins/bootstrap/js/`, `doc/skins/bootswatch/`]
 	}
 	
