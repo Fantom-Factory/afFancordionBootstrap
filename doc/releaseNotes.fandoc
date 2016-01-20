@@ -1,8 +1,10 @@
 Versions
 ********
 
-v1.0.1
+v1.0.2
 ======
+ - Chg: Updated to use [Fancordion 1.1]`pod:afFancordion`.
+ - Bug: Pod did not include the 'bootstrap-theme.min.css' file.
  - Bug: Stacktraces weren't XML escaped.
 
 v1.0.0
