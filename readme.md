@@ -1,7 +1,7 @@
-#Fancordion Bootstrap v1.0.0
+#Fancordion Bootstrap v1.0.2
 ---
 [![Written in: Fantom](http://img.shields.io/badge/written%20in-Fantom-lightgray.svg)](http://fantom.org/)
-[![pod: v1.0.0](http://img.shields.io/badge/pod-v1.0.0-yellow.svg)](http://www.fantomfactory.org/pods/afFancordionBootstrap)
+[![pod: v1.0.2](http://img.shields.io/badge/pod-v1.0.2-yellow.svg)](http://www.fantomfactory.org/pods/afFancordionBootstrap)
 ![Licence: MIT](http://img.shields.io/badge/licence-MIT-blue.svg)
 
 ## Overview
@@ -12,13 +12,13 @@ Fancordion Bootstrap provides [Bootstrap](http://getbootstrap.com/) and [Bootswa
 
 Fancordion Bootstrap is bundled with skins for Bootstrap v3.3.5.
 
-![Bootstrap rendering example](http://pods.fantomfactory.org/pods/afFancordionBootstrap/doc/bootstrapRenderingExample.png)
+![Bootstrap rendering example](http://pods.fantomfactory.org/pods/afFancordionBootstrap/doc/fandoc:/afFancordionBootstrap/doc/bootstrapRenderingExample.png)
 
 ## Install
 
 Install `Fancordion Bootstrap` with the Fantom Repository Manager ( [fanr](http://fantom.org/doc/docFanr/Tool.html#install) ):
 
-    C:\> fanr install -r http://repo.status302.com/fanr/ afFancordionBootstrap
+    C:\> fanr install -r http://pods.fantomfactory.org/fanr/ afFancordionBootstrap
 
 To use in a [Fantom](http://fantom.org/) project, add a dependency to `build.fan`:
 

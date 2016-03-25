@@ -4,6 +4,7 @@ Versions
 v1.0.2
 ======
  - Chg: Updated to use [Fancordion 1.1]`pod:afFancordion`.
+ - Chg: Cmds in '<pre>' tags look better.
  - Bug: Pod did not include the 'bootstrap-theme.min.css' file.
  - Bug: Stacktraces weren't XML escaped.
 
