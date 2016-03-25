@@ -181,23 +181,25 @@ class BootstrapSkin : FancordionSkin {
 	
 	// ---- Test Results --------------------------------------------------------------------------
 	
+	private Str cmdHtml(Str level, Str body) {
+		if (inTable)
+			return """<${cmdElem} class="cmd ${level}">${body}</${cmdElem}>"""
+		if (inPre)
+			return """<${cmdElem} class="cmd bg-${level}">${body}</${cmdElem}>"""
+		return """<${cmdElem} class="cmd alert alert-${level}">${body}</${cmdElem}>"""
+	}
+	
 	** Called to render an ignored command.
 	@NoDoc
 	override This cmdIgnored(Str text) {
-		write(inTable 
-			? """<td   class="cmd active">${text.toXml}</td>"""
-			: """<span class="cmd alert alert-active">${text.toXml}</span>"""
-		)
+		return write(cmdHtml("active", text.toXml))
 	}
 
 	** Called to render a command success.
 	@NoDoc
 	override This cmdSuccess(Str text, Bool escape := true) {
 		body := escape ? text.toXml : text
-		return write(inTable 
-			? """<td   class="cmd success">${body}</td>"""
-			: """<span class="cmd alert alert-success">${body}</span>"""
-		)
+		return write(cmdHtml("success", body))
 	}
 
 	** Called to render a command failure.
@@ -205,10 +207,7 @@ class BootstrapSkin : FancordionSkin {
 	override This cmdFailure(Str expected, Obj? actual, Bool escape := true) {
 		text := escape ? expected.toXml : expected
 		body := """<del class="expected">${text}</del> <span class="actual">${firstLine(actual?.toStr).toXml}</span>"""
-		return write(inTable 
-			? """<td   class="cmd danger">${body}</td>"""
-			: """<span class="cmd alert alert-danger">${body}</span>"""
-		)
+		return write(cmdHtml("danger", body))
 	}
 
 	** Called to render a command error.
@@ -216,12 +215,8 @@ class BootstrapSkin : FancordionSkin {
 	override This cmdErr(Str cmdUrl, Str cmdText, Err err) {
 		modalId := "modal-${nextErrId++}"
 		body := """<del class="expected">${cmdText.toXml}</del> <samp class="actual">${err.typeof.name.toXml}: ${firstLine(err.msg).toXml}</samp>"""
-		write(inTable 
-			? """<td   class="cmd danger">${body}</td>"""
-			: """<span class="cmd alert alert-danger">${body}</span>"""
-		)
+		write(cmdHtml("danger", body))
 		write(""" <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#${modalId}">Show Stack Trace</button>""")
-
 		modal := 
 """
    <!-- Modal -->
