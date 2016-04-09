@@ -11,13 +11,13 @@ class Build : BuildPod {
 		meta = [
 			"proj.name"		: "Fancordion Bootstrap",	
 			"repo.tags"		: "testing",
-			"repo.public"	: "false"
+			"repo.public"	: "true"
 		]
 
 		depends = [
-			"sys          1.0",
-			"afFancordion 1.1.0 - 1.1",
-			"afBeanUtils  1.0.4 - 1.0"
+			"sys          1.0.68 - 1.0",
+			"afFancordion 1.1.0  - 1.1",
+			"afBeanUtils  1.0.4  - 1.0"
 		]
 
 		srcDirs = [`fan/`, `test/`]
