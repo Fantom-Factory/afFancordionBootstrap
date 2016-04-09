@@ -6,12 +6,12 @@ class Build : BuildPod {
 	new make() {
 		podName = "afFancordionBootstrap"
 		summary = "Bootstrap and Bootswatch skins for Fancordion test results"
-		version = Version("1.0.2")
+		version = Version("1.0.3")
 
 		meta = [
 			"proj.name"		: "Fancordion Bootstrap",	
 			"repo.tags"		: "testing",
-			"repo.public"	: "true"
+			"repo.public"	: "false"
 		]
 
 		depends = [
