@@ -17,7 +17,7 @@ class Build : BuildPod {
 		depends = [
 			"sys          1.0.68 - 1.0",
 			"afFancordion 1.1.0  - 1.1",
-			"afBeanUtils  1.0.4  - 1.0"
+			"afBeanUtils  1.0.8  - 1.0"
 		]
 
 		srcDirs = [`fan/`, `test/`]
